@@ -71,7 +71,7 @@ Mat* CalculateHistogram(Mat srcImage){
 	//imshow("histImage", histImage);
 }
 
-void DrawHistogram(Mat* color_channel, int i){
+void DrawHistogram(Mat* color_channel, int j){
 	Mat b_hist = *(color_channel + 0);
 	Mat g_hist = *(color_channel + 1);
 	Mat r_hist = *(color_channel + 2);
@@ -94,7 +94,7 @@ void DrawHistogram(Mat* color_channel, int i){
 			Scalar(0, 0, 255), 2, 8, 0);
 	}
 
-	switch(i){
+	switch(j){
 		case 0:
 			imshow("beach1_histogram", histImage);
 			break;
