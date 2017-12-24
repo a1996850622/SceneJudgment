@@ -14,7 +14,7 @@ Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(0, 0, 0));
 /* Function */
 Mat* CalculateHistogram(Mat);
 void DrawHistogram(Mat*, int);
-float Compare(Mat*, Mat*);
+void Compare(Mat*, Mat*);
 
 int main(int argc, char *argv[]){
 	char filename[] = "src_images/";
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
 	float data[12];
 
 	Mat dstImage = imread(filename);
-	Mat *dst_color_channel
+	Mat *dst_color_channel;
 	dst_color_channel = CalculateHistogram(dstImage);
 
 	Mat srcImages[12];
@@ -166,5 +166,15 @@ void DrawHistogram(Mat* color_channel, int j){
 }
 
 void Compare(Mat* color_channel, Mat* dst_color_channel){
+	float sample[histSize], dst[histSize];
+	float Correlation = 0;
+
+	for(int i=0; i<histSize; i++){
+		//sample[i] = 0.3 * (*(color_channel + 2)).at<float>(i) + 0.59 * (*(color_channel + 1)).at<float>(i) + 0.11 * (*(color_channel + 0)).at<float>(i);
+		//dst[i] = 0.3 * (*(dst_color_channel + 2)).at<float>(i) + 0.59 * (*(dst_color_channel + 1)).at<float>(i) + 0.11 * (*(dst_color_channel + 0)).at<float>(i);
+
+		//cout<< fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0) <<endl;
+		//Correlation = Correlation + fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0);
+	}
 
 }
