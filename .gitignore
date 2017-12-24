@@ -1,6 +1,14 @@
-# Windows
+# Python:
+.idea/
+__pycache__/
+*.pyc
+
+# Windows:
+*.lnk
 Thumbs.db
 
-# Project
-Lastest
-match
+# Private:
+test.py
+
+# Project:
+*.hist.png
