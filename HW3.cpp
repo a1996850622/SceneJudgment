@@ -14,13 +14,16 @@ Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(0, 0, 0));
 /* Function */
 Mat* CalculateHistogram(Mat);
 void DrawHistogram(Mat*, int);
-void Compare();
+float Compare(Mat*, Mat*);
 
 int main(int argc, char *argv[]){
 	char filename[] = "src_images/";
 	strcat(filename, argv[1]);
+	float data[12];
 
 	Mat dstImage = imread(filename);
+	Mat *dst_color_channel
+	dst_color_channel = CalculateHistogram(dstImage);
 
 	Mat srcImages[12];
 	srcImages[0]  = imread("src_images/beach_1.jpg");
@@ -44,14 +47,16 @@ int main(int argc, char *argv[]){
 	for(int i=0; i<12; i++){
 		color_channel = CalculateHistogram(srcImages[i]);
 		DrawHistogram(color_channel, i);
+		Compare(color_channel, dst_color_channel);
 	}
 
-	//cout << *(color_channel+2) << endl;
+	// cout << *(color_channel+2) << endl;
 
 	waitKey(0);
 	return 0;
 }
 
+/* Calculate Histogram */
 Mat* CalculateHistogram(Mat srcImage){
 	vector<Mat> bgr_planes;
 	float rangeSize = 256;
@@ -82,6 +87,7 @@ Mat* CalculateHistogram(Mat srcImage){
 	//imshow("histImage", histImage);
 }
 
+/* Draw and Save Histogram */
 void DrawHistogram(Mat* color_channel, int j){
 	Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(0, 0, 0));
 	Mat b_hist = *(color_channel + 0);
