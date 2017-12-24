@@ -209,7 +209,7 @@ float Compare(Mat* color_channel, Mat* dst_color_channel){
 		Correlation = Correlation + fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0);
 	}
 	Correlation = Correlation/256;
-	//cout<<"Average:"<< Correlation <<endl;
+	cout<<"Average:"<< Correlation <<endl;
 
 	return Correlation;
 }
