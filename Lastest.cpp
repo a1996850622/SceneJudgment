@@ -20,7 +20,8 @@ int main(int argc, char *argv[]){
 	char filename[] = "src_images/";
 	strcat(filename, argv[1]);
 	float data[12];
-	float Correlation[12];
+	float All_Correlation[12];
+	float Scene_Correlation[4];
 
 	Mat dstImage = imread(filename);
 	Mat *dst_color_channel;
@@ -49,8 +50,13 @@ int main(int argc, char *argv[]){
 	for(int i=0; i<12; i++){
 		color_channel = CalculateHistogram(srcImages[i]);
 		DrawHistogram(color_channel, i);
-		Correlation[i] = Compare(color_channel, dst_color_channel); 
+		All_Correlation[i] = Compare(color_channel, dst_color_channel);
 	}
+
+	/* Judge the Scene */
+	for(int i=0; i<4; i++)
+			Scene_Correlation[i] = All_Correlation[i] + All_Correlation[i+4] + All_Correlation[i+8];
+	cout<<Scene_Correlation[0]<<endl;
 
 	// cout << *(color_channel+2) << endl;
 
@@ -179,7 +185,7 @@ float Compare(Mat* color_channel, Mat* dst_color_channel){
 		Correlation = Correlation + fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0);
 	}
 	Correlation = Correlation/256;
-	cout<<"Average:"<< Correlation <<endl;
+	//cout<<"Average:"<< Correlation <<endl;
 
 	return Correlation;
 }
