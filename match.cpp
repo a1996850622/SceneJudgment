@@ -7,7 +7,7 @@ using namespace cv;
 
 int main(int argc, char* argv[]){
 	Mat beach1 = imread("src_images/beach_1.jpg");
-	Mat beach2 = imread("src_images/beach_2.jpg");
+	Mat beach2 = imread("src_images/restaurant_1.jpg");
 	Mat mountain1 = imread("src_images/mountain_1.jpg");
 
 	vector<Mat> bgr_planes_beach1;
@@ -44,13 +44,17 @@ int main(int argc, char* argv[]){
 
 	float b1[256];
 	float b2[256];
+	float sum = 0;
 
 	for(int i=0; i<histSize; i++){
 		b1[i] = 0.3 * r_hist_beach1.at<float>(i) + 0.59 * g_hist_beach1.at<float>(i) + 0.11 * b_hist_beach1.at<float>(i);
 		b2[i] = 0.3 * r_hist_beach2.at<float>(i) + 0.59 * g_hist_beach2.at<float>(i) + 0.11 * b_hist_beach2.at<float>(i);
 
 		cout<< fabs(b1[i] - b2[i]) / ((b1[i]+b2[i])/2.0) <<endl;
+		sum = sum + fabs(b1[i] - b2[i]) / ((b1[i]+b2[i])/2.0);
 	}
+
+	cout<<"Average:"<<sum/256<<endl;
 
 	waitKey(0);
 	return 0;

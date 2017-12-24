@@ -112,6 +112,7 @@ void DrawHistogram(Mat* color_channel, int j){
 			Scalar(0, 0, 255), 2, 8, 0);
 	}
 
+	/* Show and Write out all the Histograms */
 	switch(j){
 		case 0:
 			imwrite("Histogram/beach1_histogram.jpg", histImage);
@@ -162,4 +163,8 @@ void DrawHistogram(Mat* color_channel, int j){
 			imshow("road3_histogram", histImage);
 			break;
 	}
+}
+
+void Compare(Mat* color_channel, Mat* dst_color_channel){
+
 }
