@@ -6,7 +6,7 @@ This is a very "idiot" project for judging scenes.
 
 Please compile "Lastest.cpp" in Linux system.
 
-After compile Lastest.cpp, you can execute this program in following command:
+After compile Lastest.cpp, you can execute this program with following command:
 
 ```shell
 ./output beach_1.jpg
