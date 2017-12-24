@@ -170,11 +170,11 @@ void Compare(Mat* color_channel, Mat* dst_color_channel){
 	float Correlation = 0;
 
 	for(int i=0; i<histSize; i++){
-		//sample[i] = 0.3 * (*(color_channel + 2)).at<float>(i) + 0.59 * (*(color_channel + 1)).at<float>(i) + 0.11 * (*(color_channel + 0)).at<float>(i);
-		//dst[i] = 0.3 * (*(dst_color_channel + 2)).at<float>(i) + 0.59 * (*(dst_color_channel + 1)).at<float>(i) + 0.11 * (*(dst_color_channel + 0)).at<float>(i);
+		sample[i] = 0.3 * (*(color_channel + 2)).at<float>(i) + 0.59 * (*(color_channel + 1)).at<float>(i) + 0.11 * (*(color_channel + 0)).at<float>(i);
+		dst[i] = 0.3 * (*(dst_color_channel + 2)).at<float>(i) + 0.59 * (*(dst_color_channel + 1)).at<float>(i) + 0.11 * (*(dst_color_channel + 0)).at<float>(i);
 
 		//cout<< fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0) <<endl;
-		//Correlation = Correlation + fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0);
+		Correlation = Correlation + fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0);
 	}
-
+	cout<<"Average:"<< Correlation/256 <<endl;
 }
