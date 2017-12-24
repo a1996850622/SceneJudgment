@@ -14,7 +14,7 @@ Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(0, 0, 0));
 /* Function */
 Mat* CalculateHistogram(Mat);
 void DrawHistogram(Mat*, int);
-void Compare(Mat*, Mat*);
+float Compare(Mat*, Mat*);
 
 int main(int argc, char *argv[]){
 	char filename[] = "src_images/";
@@ -116,56 +116,56 @@ void DrawHistogram(Mat* color_channel, int j){
 	switch(j){
 		case 0:
 			imwrite("Histogram/beach1_histogram.jpg", histImage);
-			imshow("beach1_histogram", histImage);
+			//imshow("beach1_histogram", histImage);
 			break;
 		case 1:
 			imwrite("Histogram/mountain1_histogram.jpg", histImage);
-			imshow("mountain1_histogram", histImage);
+			//imshow("mountain1_histogram", histImage);
 			break;
 		case 2:
 			imwrite("Histogram/restaurant1_histogram.jpg", histImage);
-			imshow("restaurant1_histogram", histImage);
+			//imshow("restaurant1_histogram", histImage);
 			break;
 		case 3:
 			imwrite("Histogram/road1_histogram.jpg", histImage);
-			imshow("road1_histogram", histImage);
+			//imshow("road1_histogram", histImage);
 			break;
 		case 4:
 			imwrite("Histogram/beach2_histogram.jpg", histImage);
-			imshow("beach2_histogram", histImage);
+			//imshow("beach2_histogram", histImage);
 			break;
 		case 5:
 			imwrite("Histogram/mountain2_histogram.jpg", histImage);
-			imshow("mountain2_histogram", histImage);
+			//imshow("mountain2_histogram", histImage);
 			break;
 		case 6:
 			imwrite("Histogram/restaurant2_histogram.jpg", histImage);
-			imshow("restaurant2_histogram", histImage);
+			//imshow("restaurant2_histogram", histImage);
 			break;
 		case 7:
 			imwrite("Histogram/road2_histogram.jpg", histImage);
-			imshow("road2_histogram", histImage);
+			//imshow("road2_histogram", histImage);
 			break;
 		case 8:
 			imwrite("Histogram/beach3_histogram.jpg", histImage);
-			imshow("beach3_histogram", histImage);
+			//imshow("beach3_histogram", histImage);
 			break;
 		case 9:
 			imwrite("Histogram/mountain3_histogram.jpg", histImage);
-			imshow("mountain3_histogram", histImage);
+			//imshow("mountain3_histogram", histImage);
 			break;
 		case 10:
 			imwrite("Histogram/restaurant3_histogram.jpg", histImage);
-			imshow("restaurant3_histogram", histImage);
+			//imshow("restaurant3_histogram", histImage);
 			break;
 		case 11:
 			imwrite("Histogram/road3_histogram.jpg", histImage);
-			imshow("road3_histogram", histImage);
+			//imshow("road3_histogram", histImage);
 			break;
 	}
 }
 
-void Compare(Mat* color_channel, Mat* dst_color_channel){
+float Compare(Mat* color_channel, Mat* dst_color_channel){
 	float sample[histSize], dst[histSize];
 	float Correlation = 0;
 
@@ -177,4 +177,6 @@ void Compare(Mat* color_channel, Mat* dst_color_channel){
 		Correlation = Correlation + fabs(sample[i] - dst[i]) / ((sample[i] + dst[i]) / 2.0);
 	}
 	cout<<"Average:"<< Correlation/256 <<endl;
+
+	return Correlation/256;
 }
