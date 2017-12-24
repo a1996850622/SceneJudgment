@@ -56,7 +56,31 @@ int main(int argc, char *argv[]){
 	/* Judge the Scene */
 	for(int i=0; i<4; i++)
 			Scene_Correlation[i] = All_Correlation[i] + All_Correlation[i+4] + All_Correlation[i+8];
-	cout<<Scene_Correlation[0]<<endl;
+	
+	float min = Scene_Correlation[0];
+	int flag = 0;
+	for(int i=0; i<4; i++){
+		if(min > Scene_Correlation[i]){
+			min = Scene_Correlation[i];
+			flag = i;
+		}
+	}
+
+	switch(flag){
+		case 0:
+			cout<<"This image is probably Beach"<<endl;
+			break;
+		case 1:
+			cout<<"This image is probably Mountain"<<endl;
+			break;
+		case 2:
+			cout<<"This image is probably Restaurant"<<endl;
+			break;
+		case 3:
+			cout<<"This image is probably Road"<<endl;
+			break;
+	}
+
 
 	// cout << *(color_channel+2) << endl;
 
